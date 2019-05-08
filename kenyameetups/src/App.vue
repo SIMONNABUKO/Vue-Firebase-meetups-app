@@ -1,37 +1,70 @@
 <template>
   <v-app>
-    <v-toolbar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        flat
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-toolbar>
+  
+  <v-toolbar dark class= "teal accent-3">
 
-    <v-content>
-      <HelloWorld/>
-    </v-content>
+  <v-toolbar-side-icon @click.native.stop="sideNav=!sideNav" 
+  class="hidden-sm-and-up">
+  </v-toolbar-side-icon>
+    <v-toolbar-title>
+    <router-link to="/">KenyaDevMeetups</router-link>  
+    </v-toolbar-title>
+    
+    <v-spacer>
+    </v-spacer>
+    <v-toolbar-items class="hidden-xs-only">
+      
+        <v-btn flat  v-for="item in menuItems" :key="item.title" 
+    router
+    :to="item.link">
+          
+        <v-icon dark left> {{item.icon}}</v-icon>
+        {{item.title}}</v-btn>
+      
+    </v-toolbar-items>
+    
+  </v-toolbar>
+    <main>
+      <router-view></router-view>
+    </main>
+
+  <v-navigation-drawer temporary v-model="sideNav">
+    <v-list>
+      <v-list-tile v-for="item in menuItems" :key="item.title" 
+      router 
+      :to="item.link">
+        
+        <v-list-tile-action>
+          <v-icon> {{item.icon}}</v-icon>
+        </v-list-tile-action>
+
+        <v-list-tile-content>{{item.title}}</v-list-tile-content>
+       
+      </v-list-tile>
+    </v-list>
+  </v-navigation-drawer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Home from './components/Home'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Home
   },
   data () {
     return {
-      //
+      sideNav: false,
+      menuItems:[
+        
+          {icon: "supervisor_account", title: "View Meetups", link: "/meetups"},
+          {icon: "room", title: "Organize Meetup", link: "/meetups/new"},
+          {icon: "person", title: "profile", link: "/user/profile"},
+          {icon: "face", title: "Sign In", link: "/user/signup"},
+          {icon: "lock_open", title: "Log In", link: "/user/login"}
+      ]
     }
   }
 }
