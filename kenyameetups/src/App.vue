@@ -1,8 +1,7 @@
 <template>
   <v-app>
-  
-  <v-toolbar dark class= "teal accent-3">
 
+  <v-toolbar flat app dark class= "teal accent-3">
   <v-toolbar-side-icon @click.native.stop="sideNav=!sideNav" 
   class="hidden-sm-and-up">
   </v-toolbar-side-icon>
@@ -23,12 +22,9 @@
       
     </v-toolbar-items>
     
-  </v-toolbar>
-    <main>
-      <router-view></router-view>
-    </main>
+      </v-toolbar> 
 
-  <v-navigation-drawer temporary v-model="sideNav">
+      <v-navigation-drawer app temporary v-model="sideNav">
     <v-list>
       <v-list-tile v-for="item in menuItems" :key="item.title" 
       router 
@@ -43,6 +39,12 @@
       </v-list-tile>
     </v-list>
   </v-navigation-drawer>
+
+    <main>
+      <router-view></router-view>
+    </main>
+
+  
   </v-app>
 </template>
 

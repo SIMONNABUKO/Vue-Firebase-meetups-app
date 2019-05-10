@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <h1>This is the Create Meetup page</h1>
-    </div>
+    <h1>This is an organize meetup page</h1>
 </template>
 
 <script>

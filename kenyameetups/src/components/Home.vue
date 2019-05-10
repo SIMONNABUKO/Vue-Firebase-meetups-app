@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-layout row wrap class="mb-2">
+        <v-layout row wrap class="mt-5">
             <v-flex xs12 sm6 class="text-xs-center text-sm-right"> 
                 <v-btn large class="teal accent-3"><router-link to="/meetups">
                 View Meetups</router-link></v-btn>
@@ -12,10 +12,11 @@
         </v-layout>
         <v-layout row wrap class="mt-2">
             <v-flex xs12>
-                <v-carousel>
+                <v-carousel style="cursor:pointer;">
                 <v-carousel-item
                 v-for="meetup in meetups"
                 :key="meetupId"
+                @click="onLoadMeetup(meetup.id)"
                 :src="meetup.meetupImageLink"
                 >
                 <div class="title">{{meetup.meetupTitle}}</div>
@@ -47,6 +48,11 @@ data(){
             {meetupImageLink: "https://www.africanmeccasafaris.com/wp-content/uploads/rondoretreat1.jpg", meetupId: "78trt",meetupTitle: "Kotlin Meetup Kakamega" },
             
         ]
+    }
+},
+methods:{
+    onLoadMeetup(id){
+        this.$router.push('/meetups/' + id); 
     }
 }
 }
